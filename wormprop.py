@@ -1,4 +1,7 @@
-# a2.py - CS556 Assignment 2 - this program studies worm propagation
+# wormprop.py - CS556 Assignment 2 
+#             - this program studies worm propagation in different
+#               types of graphs
+#
 # author: kbmulligan
 #         brett.mulligan@gmail.com
 #
@@ -32,7 +35,7 @@ def test_nx () :
 
 if __name__ == "__main__" :
 	
-	print "Assignment 2: Worm Propagation..."
+	print "Assignment 2: Graph creator..."
 	
 	test_nx()
 	

@@ -1,11 +1,15 @@
-# a2.py - CS556 Assignment 2 - this program studies worm propagation
+# a2.py - CS556 Assignment 2
+#       - this program creates graphs to study worm propagation
 # author: kbmulligan
 #         brett.mulligan@gmail.com
 #
 #
 # 
-
+import sys
 import networkx as nx
+
+
+filename = ""
 
 
 def test_nx () :
@@ -27,14 +31,18 @@ def test_nx () :
 
 
 
-
+def usage () :
+    print "Usage: " + sys.argv[0] + "<graph type> <filename>"
 
 
 if __name__ == "__main__" :
 	
-	print "Assignment 2: Worm Propagation..."
-	
-	test_nx()
-	
-	print 'All tests passed!'
+    if (len(sys.argv) != 3):
+        usage()
+        exit()
+
+    print "Assignment 2: Graph creator..."
+    test_nx()
+ 
+    print 'All tests passed!'
 
