@@ -29,13 +29,17 @@ def test_nx () :
     g.add_edge('C', 'D', weight=4)
     path = nx.shortest_path(g, 'A', 'D', weight='weight')
 
-    print path
+    # print path
 
     print 'Good test, continue...'
 
 def load_graph_from_file (filename) :
     graph = nx.read_edgelist(filename, delimiter=",", data=False)
     return graph
+
+def propagate_worm (graph):
+
+    return new_graph
 
 def usage () :
     print "Usage: " + sys.argv[0] + \
@@ -46,9 +50,9 @@ if __name__ == "__main__" :
     if (len(sys.argv) != 4) :
         usage()
         exit()
-    else :
+    else:
         filename = sys.argv[1]
-        prob_infect = sys.argv[2]
+        prob_infect = float(sys.argv[2])
         init_node = sys.argv[3]
 
 	print "Assignment 2: Worm Propagation..."
@@ -59,9 +63,20 @@ if __name__ == "__main__" :
 
 	print 'Loading network graph...'
 
-    for graph_file in graph_files : 
-        network = load_graph_from_file(graph_file)
+    network = load_graph_from_file(filename)
 
+    # check that init_node is actually a node in the network
+    if (init_node in network.nodes()) :
+        # print "init_node is in the network! Yay!"
+        pass
+    else :
+        print "init_node is not in the network! This is not going to work out."    
+        exit()
 
-
-
+    if (prob_infect > 0 and prob_infect < 1.0) :
+        # print "probability of infection is within limits"
+        pass
+    else :
+        print "probability of infection is out of limits"
+        print prob_infect
+        exit()
