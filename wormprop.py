@@ -30,6 +30,7 @@ def test_nx () :
     path = nx.shortest_path(g, 'A', 'D', weight='weight')
 
     # print path
+    assert(path == ['A', 'B', 'D'])
 
     print 'Good test, continue...'
 
@@ -38,22 +39,25 @@ def load_graph_from_file (filename) :
     return graph
 
 def propagate_worm (graph):
-
-    return new_graph
+    graph.nodes() 
 
 def usage () :
-    print "Usage: " + sys.argv[0] + \
-          " <GRAPH FILE> <PROBABILITY OF INFECTION> <INITIAL INFECTED NODE>"
+    print "usage: " + sys.argv[0] + \
+          "GRAPH_FILE PROBABILITY_OF_INFECTION INITIAL_INFECTED_NODE" + \
+          "[PROBABILITY_OF_CURE INITIAL_CURED_NODE]"
 
 if __name__ == "__main__" :
 	
-    if (len(sys.argv) != 4) :
+    if (len(sys.argv) not in [4, 6]) :
         usage()
         exit()
     else:
         filename = sys.argv[1]
         prob_infect = float(sys.argv[2])
-        init_node = sys.argv[3]
+        init_node_attack = sys.argv[3]
+        if (len(sys.argv) == 6) :
+            prob_cure = float(sys.argv[4])
+            init_node_defense = sys.argv[5]
 
 	print "Assignment 2: Worm Propagation..."
 	
@@ -66,7 +70,7 @@ if __name__ == "__main__" :
     network = load_graph_from_file(filename)
 
     # check that init_node is actually a node in the network
-    if (init_node in network.nodes()) :
+    if (init_node_attack in network.nodes()) :
         # print "init_node is in the network! Yay!"
         pass
     else :

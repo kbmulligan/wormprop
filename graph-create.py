@@ -8,8 +8,11 @@
 import sys
 import networkx as nx
 
+nodes_nlt = 100
+nodes_ngt = 10000
 
-filename = ""
+nodes = 1000
+
 erg_file = "random-erg.graph"
 bag_file = "random-bag.graph"
 wsg_file = "random-wsg.graph"
@@ -57,7 +60,7 @@ if __name__ == "__main__" :
 
     print "Assignment 2: Graph creator..."
     test_nx()
-    create_graphs()
+    create_graphs(nodes)
 
     print 'All tests passed!'
 
