@@ -13,9 +13,9 @@ nodes_ngt = 10000
 
 nodes = 1000
 
-erg_file = "random-erg.graph"
-bag_file = "random-bag.graph"
-wsg_file = "random-wsg.graph"
+erg_file = "random-erg-"+str(nodes)+".graph"
+bag_file = "random-bag-"+str(nodes)+".graph"
+wsg_file = "random-wsg-"+str(nodes)+".graph"
 
 def test_nx () :
     """ Tests existence and functionality of networkx lib. """
@@ -34,8 +34,8 @@ def test_nx () :
     print 'Good test, continue...'
 
 
-def create_graphs (num_nodes=10, prob_edge=0.2, edges_for_new_nodes=3, 
-                   k_nearest=3, prob_rewiring=0.1) :
+def create_graphs (num_nodes=10, prob_edge=0.1, edges_for_new_nodes=5, 
+                   k_nearest=5, prob_rewiring=0.05) :
 
     erg = nx.gnp_random_graph(num_nodes, prob_edge) 
     bag = nx.barabasi_albert_graph(num_nodes, edges_for_new_nodes)
@@ -55,8 +55,8 @@ def usage () :
 
 if __name__ == "__main__" :
 	
-    if (len(sys.argv) != 3):
-        usage()
+    # if (len(sys.argv) != 3):
+        # usage()
 
     print "Assignment 2: Graph creator..."
     test_nx()
