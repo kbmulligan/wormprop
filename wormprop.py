@@ -134,17 +134,24 @@ def complete (network) :
     return is_complete
 
 
-def propagate (network) :
+def propagate (network, stats=None) :
     global step 
 
     print ""
     print "Propagating, step " + str(step)
     network.status()
 
+
+    # record stats here
+    if (stats != None) :
+        stats['infected'].append(network.get_num_infected()) 
+        stats['healthy'].append(network.get_num_healthy()) 
+        stats['cured'].append(network.get_num_cured()) 
+
+    # do propagation steps here
     propagate_worm(network)
     propagate_cure(network)
 
-    # time.sleep(1)
     step += 1
 
 
@@ -248,11 +255,20 @@ if __name__ == "__main__" :
 
     # everything checks out, actually get started
     network = Network(graph, prob_attack, init_node_attack, prob_defend, init_node_defend)
-
+    stats = { 'healthy': [], 'infected': [], 'cured': [] }
+    
     while (not complete(network)) :
-        propagate(network)
+        propagate(network, stats)
+
+    # end caps for stats
+    stats['infected'].append(network.get_num_infected()) 
+    stats['healthy'].append(network.get_num_healthy()) 
+    stats['cured'].append(network.get_num_cured()) 
 
     print ""
     print "END STATE: "
     network.status()
     print "Finally complete!" + " Rounds: " + str(step)
+
+    for key in stats.keys() :
+        print key, stats[key], len(stats[key])
