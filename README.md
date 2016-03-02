@@ -13,4 +13,4 @@ matplotlib python library
 
 # Example
     graph-create.py
-    worm-prop.py random-erg-1000.graph 0.3 0 0.5 999 ```
+    worm-prop.py random-erg-1000.graph 0.3 0 0.5 999
