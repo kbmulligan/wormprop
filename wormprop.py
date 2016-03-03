@@ -7,9 +7,13 @@
 #
 #
 # 
+
+import matplotlib
+matplotlib.use("Agg")
+
 import sys, time, random
 import networkx as nx
-import matplotlib
+import matplotlib.pyplot as plt
 
 step = 0
 
@@ -207,6 +211,20 @@ def propagate_cure (network) :
     num_cured = len(cure_definite) 
     return num_cured
 
+def save_figures (stats) :
+    
+    for key in stats.keys() :
+        plt.clf() 
+        plt.plot(stats[key]) 
+        plt.savefig('results-' + filename + '-' + key + '.png')
+
+def write_results (items) :
+    with open("results.stats", "a") as results_file:
+
+        for item in items:
+            results_file.write(str(item) + " ")
+        results_file.write("\n")
+
 
 def usage () :
     print "usage: " + sys.argv[0] + \
@@ -272,3 +290,6 @@ if __name__ == "__main__" :
 
     for key in stats.keys() :
         print key, stats[key], len(stats[key])
+
+    save_figures(stats)
+    write_results([step, filename])

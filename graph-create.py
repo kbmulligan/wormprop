@@ -9,13 +9,10 @@ import sys
 import networkx as nx
 
 nodes_nlt = 100
-nodes_ngt = 10000
+nodes_ngt = 100000
 
-nodes = 1000
+nodes = 10000
 
-erg_file = "random-erg-"+str(nodes)+".graph"
-bag_file = "random-bag-"+str(nodes)+".graph"
-wsg_file = "random-wsg-"+str(nodes)+".graph"
 
 def test_nx () :
     """ Tests existence and functionality of networkx lib. """
@@ -50,7 +47,7 @@ def create_graphs (num_nodes=10, prob_edge=0.1, edges_for_new_nodes=5,
     nx.write_edgelist(wsg, wsg_file, delimiter=",", data=False)
 
 def usage () :
-    print "Usage: " + sys.argv[0] + "<graph type> <filename>"
+    print "usage: " + sys.argv[0] + "NODES [FILENAME]"
 
 
 if __name__ == "__main__" :
@@ -58,8 +55,18 @@ if __name__ == "__main__" :
     # if (len(sys.argv) != 3):
         # usage()
 
+    if (len(sys.argv) not in [2, 3]) :
+        usage()
+    else :
+        nodes = int(sys.argv[1])
+
     print "Assignment 2: Graph creator..."
     test_nx()
+    
+
+    erg_file = "random-erg-"+str(nodes)+".graph"
+    bag_file = "random-bag-"+str(nodes)+".graph"
+    wsg_file = "random-wsg-"+str(nodes)+".graph"
     create_graphs(nodes)
 
     print 'All tests passed!'
